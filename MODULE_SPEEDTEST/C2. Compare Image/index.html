@@ -3,66 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Compare Image</title>
-    <style>
-        body {
-            margin: 10px;
-            padding: 10px;
-            user-select: none;
-            -webkit-user-drag: none;
-            -drag: none;
-        }
-        img {
-            user-select: none;
-            -webkit-user-drag: none;
-            -drag: none;
-        }
-        .container {
-            position: relative;
-            width: 600px;
-        }
-        .box {
-            position: absolute;
-        }
-        .box img {
-            width: 600px;
-            object-fit: contain;
-        }
-        .box.gray {
-            width: 100%;
-            filter: grayscale(100);
-            z-index: 1;
-            overflow: hidden;
-        }
-        .circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 100% 100%;
-            background-color: red;
-            position: absolute;
-            top: 200px;
-            z-index: 2;
-        }
-        .line {
-            position: absolute;
-            height: 400px;
-            width: 5px;
-            background-color: red;
-            top: 0;
-            z-index: 5;
-        }
-    </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="circle" id="circle"></div>
+    <div class="container">
         <div class="line" id="line"></div>
-        <div class="box gray" id="gray">
-            <img src="gambar.jpg" alt="gambar" id="image">
+        <div class="circle" id="circle"></div>
+        <div class="gray" id="gray">
+            <img src="gambar.jpg" alt="gambar gray">
         </div>
-        <div class="box">
-            <img src="gambar.jpg" alt="gambar">
-        </div>
+        <img src="gambar.jpg" class="background" alt="gambar">
     </div>
     <script src="script.js"></script>
 </body>

@@ -1,0 +1,48 @@
+body {
+    margin: 20px;
+    padding: 0;
+    user-select: none;
+}
+
+.container {
+    position: relative;
+    width: 400px;
+}
+
+img {
+    width: 400px;
+    -webkit-user-drag: none;
+}
+
+.gray {
+    filter: grayscale(100%);
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    background-color: white;
+    top: 45%;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    box-shadow: black 0 0 10px;
+    z-index: 1;
+}
+
+.line {
+    position: absolute;
+    background-color: white;
+    width: 3px;
+    height: 100%;
+    top: 0;
+    box-shadow: black 0 0 10px;
+    z-index: 1;
+}
