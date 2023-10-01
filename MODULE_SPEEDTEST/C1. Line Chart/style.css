@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    font-family: monospace, mono;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+canvas {
+    border: solid 1px #ff3737;
+}

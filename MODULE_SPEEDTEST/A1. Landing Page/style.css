@@ -5,78 +5,90 @@
 }
 
 body {
-    font-family: monospace, mono;
-}
-
-header {
-    padding: 20px 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header .logo {
-    color: #ff4848;
-    font-weight: bold;
-}
-
-header ul {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
-section {
+ul {
+    list-style: none;
+}
+
+header {
     display: flex;
-    padding: 100px 75px;
     align-items: center;
     justify-content: space-between;
-    background-color: #ddd;
+    padding: 20px 50px;
+}
+
+header .logo {
+    color: #ff7676;
+    font-weight: bold;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+}
+
+ul li {
+    padding: 0 20px;
 }
 
 .dropdown {
     position: relative;
-    padding: 0 20px;
+}
+
+.dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: white;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 10px;
+    padding: 20px;
 }
 
 .dropdown:hover .dropdown-content {
     display: flex;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    padding: 20px;
-}
-
-.text-hero {
-    max-width: 50%;
+section {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    padding: 100px 50px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7e7e7;
 }
 
-.round {
+.circle {
+    background-color: #ff7676;
     width: 200px;
     height: 200px;
     border-radius: 100%;
-    background-color: #ff4848;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 60%;
+}
+
+.hero-text p {
+    color: #888;
 }
 
 .btn {
-    max-width: fit-content;
-    padding: 8px 13px;
-    border-radius: 10px;
-    border: none;
-    background-color: #ff4848;
+    background-color: #ff7676;
     color: white;
+    max-width: max-content;
+    margin-top: 10px;
+    padding: 10px 10px;
+    font-weight: bold;
+    border-radius: 10px;
 }
