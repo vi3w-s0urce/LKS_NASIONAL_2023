@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masonry Layout</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid {
+            width: 960px;
+            height: 960px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .layout {
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+        }
+        .col:nth-child(1) {
+            display: grid;
+            grid-template-rows: 3fr 1fr 2fr;
+            gap: 20px;
+        }
+        .col:nth-child(2) {
+            display: grid;
+            grid-template-rows: 1fr 3fr 2fr;
+            gap: 20px;
+        }
+        .col:nth-child(3) {
+            display: grid;
+            grid-template-rows: 2fr 1fr 3fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="col">
+            <div class="layout"></div>
+            <div class="layout"></div>
+            <div class="layout"></div>
+        </div>
+        <div class="col">
+            <div class="layout"></div>
+            <div class="layout"></div>
+            <div class="layout"></div>
+        </div>
+        <div class="col">
+            <div class="layout"></div>
+            <div class="layout"></div>
+            <div class="layout"></div>
+        </div>
+    </div>
+</body>
+</html>
