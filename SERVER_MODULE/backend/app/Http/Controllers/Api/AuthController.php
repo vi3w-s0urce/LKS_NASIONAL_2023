@@ -3,54 +3,41 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AuthResource;
+use App\Http\Resources\ApiResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function login(Request $request) {
         $credentials = [
-            'email' => $request->email,
-            'password' => $request->password,
+            "email" => $request->email,
+            "password" => $request->password,
         ];
-
         $validator = Validator::make( $request->all(), [
-            'email' => ['required', 'email'],
-            'password' => ['required', 'min:5'],
+            'email' => 'required | email',
+            'password' => 'required | min:5',
         ]);
-
         if (auth()->attempt($credentials)) {
-            $user = Auth::user();
+            $user = auth()->user();
             $token = $user->createToken('accessToken')->plainTextToken;
             $response = [
-                'user' => [
-                    'name' => $user['name'],
-                    'email' => $user['email'],
-                    'accessToken' => $token,
+                "user" => [
+                    "name" => $user->name,
+                    "email" => $user->email,
+                    "token" => $token,
                 ]
             ];
-            // header('Response status: 200');
-            return new AuthResource(200, 'Login success', $response);
+            return new ApiResource(200, 'Login success', $response);
         } else if ($validator->fails()) {
-            $response = [
-                "errors" => $validator->messages()
-            ];
-            // header('Response status: 402');
-            return new AuthResource(402, 'Invalid field', $response);
+            return new ApiResource(422, 'Invalid field', $validator->messages());
         } else {
-            $response = [
-                "errors" => "Email or password incorrect"
-            ];
-            // header('Response status: 401');
-            return new AuthResource(402, 'Login Failed', $response);
+            return new ApiResource(401, 'Email or password incorrect', null);
         }
     }
 
     public function logout() {
         auth()->user()->tokens()->delete();
-        // header('Response status: 200');
-        return new AuthResource(200, 'Logout success', null);
+        return new ApiResource(200, 'Logout Success', null);
     }
 }

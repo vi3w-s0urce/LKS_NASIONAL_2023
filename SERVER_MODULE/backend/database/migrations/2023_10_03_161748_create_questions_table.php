@@ -16,9 +16,9 @@ return new class extends Migration
             $table->index('form_id');
             $table->foreignId('form_id')->references('id')->on('forms');
             $table->string('name');
-            $table->enum('choice_type', ['short answer','paragraph','date','time','multiple choice','dropdown','checkboxes']);
+            $table->enum('choice_type', ['short answer', 'paragraph', 'date', 'time', 'multiple choice', 'dropdown', 'checkboxes']);
             $table->string('choices');
-            $table->tinyInteger('is_required');
+            $table->tinyInteger('is_required')->default(1);
             $table->timestamps();
         });
     }

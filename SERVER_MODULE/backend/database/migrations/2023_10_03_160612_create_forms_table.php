@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('description');
-            $table->tinyInteger('limit_one_response');
+            $table->tinyInteger('limit_one_response')->default(1);
             $table->index('creator_id');
             $table->foreignId('creator_id')->references('id')->on('users');
             $table->timestamps();

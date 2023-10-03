@@ -5,24 +5,28 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AuthResource extends JsonResource
+class ApiResource extends JsonResource
 {
     public $status;
     public $message;
-    
     public function __construct($status, $message, $resource) {
         parent::__construct($resource);
         $this->status = $status;
         $this->message = $message;
     }
-    
-    public function toArray(Request $request): array
+    public function toArray(Request $request)
     {
-        header('Response status :' . $this->status);
+        $status = $this->status;
+        header('Response status :' . $status);
+        if ($status != 200) {
+            $response = 'errors';
+        } else {
+            $response = 'data';
+        }
         return [
             'status' => $this->status,
             'message' => $this->message,
-            'data' => $this->resource,
+            $response => $this->resource,
         ];
     }
 }
