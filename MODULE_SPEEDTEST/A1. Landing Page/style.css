@@ -48,7 +48,6 @@ ul li {
     display: none;
     background-color: white;
     flex-direction: column;
-    margin-top: 10px;
     gap: 10px;
     padding: 20px;
 }
