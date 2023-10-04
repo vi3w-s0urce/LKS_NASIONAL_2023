@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Form extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "name",
+        "slug",
+        "description",
+        "limit_one_response",
+        "creator_id",
+    ];
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FormController;
+use App\Http\Controllers\Api\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,17 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('v1/auth/login', 'login');
     Route::post('v1/auth/logout', 'logout')->middleware('auth:sanctum');
 });
+
+Route::middleware('auth:sanctum')->group(function (){
+    Route::controller(FormController::class)->group(function () {
+        Route::post('v1/forms', 'create');
+        Route::get('v1/forms', 'index');
+        Route::get('v1/forms/{slug}', 'detail');
+    });
+
+    Route::controller(QuestionController::class)->group(function () {
+        Route::post('v1/forms/{slug}/questions', 'add');
+        Route::delete('v1/forms/{slug}/questions/{question_id}', 'remove');
+    });
+});
+
