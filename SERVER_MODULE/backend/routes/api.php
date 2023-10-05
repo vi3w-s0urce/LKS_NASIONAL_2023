@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\AnswerController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FormController;
 use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\ResponseController;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +39,11 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::controller(QuestionController::class)->group(function () {
         Route::post('v1/forms/{slug}/questions', 'add');
         Route::delete('v1/forms/{slug}/questions/{question_id}', 'remove');
+    });
+
+    Route::controller(ResponseController::class)->group(function () {
+        Route::post('v1/forms/{slug}/responses', 'submit');
+        Route::get('v1/forms/{slug}/responses', 'index');
     });
 });
 

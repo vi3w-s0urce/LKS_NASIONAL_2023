@@ -15,4 +15,8 @@ class Question extends Model
         'choices',
         'is_required',
     ];
+
+    public function answer() {
+        return $this->hasMany(Answer::class);
+    }
 }
