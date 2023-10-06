@@ -14,19 +14,17 @@ class ApiResource extends JsonResource
         $this->status = $status;
         $this->message = $message;
     }
-    public function toArray(Request $request)
+    public function toResponse($request)
     {
         $status = $this->status;
-        header('Response status :' . $status);
+        $data = 'data';
         if ($status != 200) {
-            $response = 'errors';
-        } else {
-            $response = 'data';
+            $data = 'errors';
         }
-        return [
+        return response()->json([
             'status' => $this->status,
             'message' => $this->message,
-            $response => $this->resource,
-        ];
+            $data => $this->resource,
+        ], $this->status); 
     }
 }
