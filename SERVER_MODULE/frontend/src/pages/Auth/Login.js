@@ -1,23 +1,23 @@
-import { Component } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
+import Loading from '../../components/Loading';
 import LoginBanner from '../../assets/img/login.svg';
-import LoadingAnimation from '../../assets/img/pablita-loading.gif';
 
-class Login extends Component {
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: '',
-            status: '',
-            message: '',
-            data: '',
-            error_message: '',
-            isLoading: false,
-        };
-    };
+const Login = () => {
+    const [state, setState] = useState({
+        email: '',
+        password: '',
+        status: '',
+        message: '',
+        data: '',
+        error_message: '',
+        isLoading: false,
+    });
 
-    handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         let email = e.target.email.value;
@@ -30,62 +30,57 @@ class Login extends Component {
         const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/',
         });
+            
+        setState({ isLoading: true });
 
-        this.setState({isLoading : true});
-        
         axiosInstance.post('v1/auth/login', {
             'email': email,
             'password': password,
         })
-        .then(response => {
-            token = response.data.data.user.token;
-
-            this.setState({token: token})
-            this.setState({isLoading : false});
-        })
-        .catch(error => {
-            status = error.response.data.status;
-            message = error.response.data.message;
-            error_message = <p className=' text-red-400 mb-4 font-bold'>! {message}</p>;
-
-            this.setState({status: status, message: message, error_message});
-            this.setState({isLoading : false});
-        });
+            .then(response => {
+                token = response.data.data.user.token;
+                setState({ token: token, isLoading: false });
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
+            })
+            .catch(error => {
+                status = error.response.data.status;
+                message = error.response.data.message;
+                error_message = <div className='bg-red-100 p-2 rounded-lg text-center border-2 border-red-400'>
+                                    <p className=' text-red-400 font-bold'>! {message}</p>
+                                </div>;
+                setState({ status: status, message: message, error_message: error_message, isLoading: false });
+            });
     }
-    
-    render () {
-        if (this.state.isLoading) {
-            return (
-                <section className='h-screen w-screen flex flex-col items-center justify-center gap-5'>
-                    <img src={LoadingAnimation} alt='loading animation' className='w-[50px]'/>
-                    <p className=' text-lg font-bold'>Loading...</p>
-                </section>
-            );
-        }
-        return (
-            <section className='flex h-screen items-center justify-center gap-40'>
-                <img src={LoginBanner} alt='LoginBanner' className='w-[500px]'></img>
-                <div>
-                    <div className='mb-3'>
-                        <h1 className='font-bold text-4xl mb-2'>Login User</h1>
-                        <p className='text-slate-400'>Silahkan login terlebih dahulu untuk mengakses aplikasi</p>
-                    </div>
-                    <form method='POST' onSubmit={this.handleSubmit}>
-                        <div className='flex flex-col mb-4 gap-2'>
-                            <label>Email</label>
-                            <input type='email' placeholder='Masukkan Email' name='email' className='border-2 p-2 rounded-lg focus:border-sky-400 focus:outline-none' required/>
-                        </div>
-                        <div className='flex flex-col mb-4 gap-2'>
-                            <label>Password</label>
-                            <input type='password' placeholder='Masukkan Password' name='password' className='border-2 p-2 rounded-lg focus:border-sky-400 focus:outline-none' required/>
-                        </div>
-                        {this.state.error_message}
-                        <button type='submit' className=' bg-sky-400 text-white p-2 rounded-lg font-bold w-full disabled:bg-slate-300'>Login</button>
-                    </form>
+
+    return (
+        <>
+        <Loading isLoading={state.isLoading} status={state.status} />
+        <section className='flex h-screen items-center justify-center gap-40'>
+            <div>
+                <h1 className='text-xl text-sky-500 font-bold mb-5'>Formify.</h1>
+                <div className='mb-5'>
+                    <h1 className='font-bold text-4xl mb-2'>Welcome!</h1>
+                    <p className='text-slate-400'>Silahkan login terlebih dahulu untuk masuk ke Formify.</p>
                 </div>
-            </section>
-        );
-    }
-};
+                <form method='POST' onSubmit={handleSubmit}>
+                    <div className='flex flex-col mb-4 gap-2'>
+                        <label>Email</label>
+                        <input type='email' placeholder='Masukkan Email' name='email' className='border-2 p-2 rounded-lg focus:border-sky-400 focus:outline-none' required />
+                    </div>
+                    <div className='flex flex-col mb-4 gap-2'>
+                        <label>Password</label>
+                        <input type='password' placeholder='Masukkan Password' name='password' className='border-2 p-2 rounded-lg focus:border-sky-400 focus:outline-none' required />
+                    </div>
+                    {state.error_message}
+                    <button type='submit' className=' bg-sky-400 text-white p-2 rounded-lg font-bold w-full mt-5 disabled:bg-slate-300'>Login</button>
+                </form>
+            </div>
+            <img src={LoginBanner} alt='LoginBanner' className='w-[500px]'></img>
+        </section>
+        </>
+    );
+}
 
 export default Login;
