@@ -11,15 +11,15 @@ const Loading = (props) => {
         </div>
     <p className=' text-lg font-bold text-white'>Loading ...</p>
 </div>;
-    if (status === 422 || status === 401) {
-        message = <div className='loading-child flex flex-col justify-center items-center gap-3'>
-        <Icon icon="line-md:alert-circle-twotone" color="#ef4444" width="50" height="50" />
-        <p className=' text-lg font-bold text-red-500'>Error!</p>
-    </div>;
-    } else {
+    if (status === 200) {
         message = <div className='loading-child flex flex-col justify-center items-center gap-3'>
         <Icon icon="line-md:circle-twotone-to-confirm-circle-twotone-transition" color="#22c55e" width="50" height="50" />
         <p className=' text-lg font-bold text-green-500'>Success!</p>
+        </div>;
+    } else {
+        message = <div className='loading-child flex flex-col justify-center items-center gap-3'>
+        <Icon icon="line-md:alert-circle-twotone" color="#ef4444" width="50" height="50" />
+        <p className=' text-lg font-bold text-red-500'>Error!</p>
         </div>;
     }
     if (isLoading) {
@@ -33,7 +33,7 @@ const Loading = (props) => {
     </div>;
     }
     return (
-        <div className={`absolute h-screen w-screen justify-center items-center overflow-hidden ${isLoading ? 'loading-anim-parent-in' : 'loading-anim-parent-out'}`}>
+        <div className={`absolute h-screen w-screen justify-center items-center overflow-hidden z-10 ${isLoading ? 'loading-anim-parent-in' : 'loading-anim-parent-out'}`}>
             <div className={`flex flex-col items-center justify-center absolute rounded-[100%] bg-sky-300 overflow-hidden ${isLoading ? 'loading-anim-in' : 'loading-anim-out'}`}>
                 {message}
             </div>

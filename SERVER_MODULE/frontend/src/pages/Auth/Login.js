@@ -1,21 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import Loading from '../../components/Loading';
 import LoginBanner from '../../assets/img/login.svg';
+import { Icon } from '@iconify/react';
+import { axiosBase } from '../../api/axiosConfig';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
-    const [state, setState] = useState({
+    const navigate = useNavigate();
+
+    const { login, token } = useAuth();
+
+    useEffect(()=> {
+        if (token) {
+            navigate('/');
+        }
+    }, []);
+
+
+    const [LoginState, setState] = useState({
         email: '',
         password: '',
         status: '',
         message: '',
-        data: '',
         error_message: '',
+        token: '',
+        data_user: '',
         isLoading: false,
     });
 
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,21 +38,24 @@ const Login = () => {
         let status;
         let message;
         let error_message;
+        let data_user;
         let token;
 
-        const axiosInstance = axios.create({
-            baseURL: 'http://127.0.0.1:8000/api/',
-        });
-            
         setState({ isLoading: true });
 
-        axiosInstance.post('v1/auth/login', {
+        axiosBase.post('v1/auth/login', {
             'email': email,
             'password': password,
         })
             .then(response => {
-                token = response.data.data.user.token;
-                setState({ token: token, isLoading: false });
+                status = response.data.status;
+                data_user = JSON.stringify(response.data.data.user);
+                token = 'Bearer ' + response.data.data.user.token;
+
+                login(data_user, token);
+
+                setState({ status: status, isLoading: false, token: token, data_user: data_user })
+        
                 setTimeout(() => {
                     navigate('/');
                 }, 2000);
@@ -47,8 +63,8 @@ const Login = () => {
             .catch(error => {
                 status = error.response.data.status;
                 message = error.response.data.message;
-                error_message = <div className='bg-red-100 p-2 rounded-lg text-center border-2 border-red-400'>
-                                    <p className=' text-red-400 font-bold'>! {message}</p>
+                error_message = <div className='flex justify-center items-center gap-2 bg-red-100 p-2 rounded-lg border-2 border-red-400 text-red-400 font-bold'>
+                                    <Icon icon="line-md:alert-circle" color="#f87171" width="24" /><span>{message}</span>
                                 </div>;
                 setState({ status: status, message: message, error_message: error_message, isLoading: false });
             });
@@ -56,7 +72,7 @@ const Login = () => {
 
     return (
         <>
-        <Loading isLoading={state.isLoading} status={state.status} />
+        <Loading isLoading={LoginState.isLoading} status={LoginState.status} />
         <section className='flex h-screen items-center justify-center gap-40'>
             <div>
                 <h1 className='text-xl text-sky-500 font-bold mb-5'>Formify.</h1>
@@ -73,7 +89,7 @@ const Login = () => {
                         <label>Password</label>
                         <input type='password' placeholder='Masukkan Password' name='password' className='border-2 p-2 rounded-lg focus:border-sky-400 focus:outline-none' required />
                     </div>
-                    {state.error_message}
+                    {LoginState.error_message}
                     <button type='submit' className=' bg-sky-400 text-white p-2 rounded-lg font-bold w-full mt-5 disabled:bg-slate-300'>Login</button>
                 </form>
             </div>
