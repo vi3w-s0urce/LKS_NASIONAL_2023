@@ -78,7 +78,7 @@ class ResponseController extends Controller
             $allowed_domain = explode(',' , $allowed_domain_data->domain);
             $user_email = explode('@', auth()->user()->email)[1];
             
-            if(!in_array($user_email, $allowed_domain)) {
+            if(!in_array($user_email, $allowed_domain) && count($allowed_domain)) {
                 return new ApiResource(403, 'Forbidden Access', null);
             }
 

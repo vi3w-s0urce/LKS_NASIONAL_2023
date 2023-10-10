@@ -1,7 +1,7 @@
 .loading-anim-in {
   height: 3000px;
   width: 3000px;
-  animation: loading-in 1s;
+  animation: loading-in 0.5s;
 }
 
 .loading-anim-out {
@@ -12,7 +12,7 @@
 
 .loading-anim-parent-in {
   display: flex;
-  animation: loading-parent-in 1s;
+  animation: loading-parent-in 0.5s;
 }
 
 .loading-anim-parent-out {
