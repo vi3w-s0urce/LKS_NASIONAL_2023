@@ -1,9 +1,9 @@
 import { Icon } from "@iconify/react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { axiosAuth } from "../api/axiosConfig";
-import Loading from "../components/Loading";
+import { axiosAuth } from "../../api/axiosConfig";
+import Loading from "../../components/Loading";
 
 const Create = () => {
 
@@ -26,10 +26,8 @@ const Create = () => {
         let name = e.target.name.value;
         let slug = e.target.slug.value;
         let description = e.target.description.value;
-        let allowed_domains = e.target.allowed_domains.value.split(',');
+        let allowed_domains = e.target.allowed_domains.value.split(",");
         let limit_one_response = e.target.limit_one_response.checked;
-
-        console.log(allowed_domains);
 
         setState({ isLoading: true });
 

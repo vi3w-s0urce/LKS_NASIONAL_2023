@@ -48,7 +48,7 @@ const Sidebar = (props) => {
                         <Link to="/" className="flex items-center gap-3"><Icon icon="line-md:home-md" width="28" />Home</Link>
                     </li>
                     <li className={`transition-all duration-300 font-bold py-2 px-3 w-full rounded-xl ${ uri === "Create" ? "bg-sky-400 text-white" : "text-slate-600 hover:bg-slate-200" } `}>
-                        <Link to="/create" className="flex items-center gap-3"><Icon icon="line-md:clipboard-arrow" width="28" />Create</Link>
+                        <Link to="/create" className="flex items-center gap-3"><Icon icon="line-md:edit" width="28" />Create</Link>
                     </li>
                 </ul>
             </div>

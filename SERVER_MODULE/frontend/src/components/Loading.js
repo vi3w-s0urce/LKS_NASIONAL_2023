@@ -12,14 +12,14 @@ const Loading = (props) => {
     <p className=' text-lg font-bold text-white'>Loading ...</p>
 </div>;
     if (status === 200) {
-        dom = <div className='loading-child flex flex-col justify-center items-center gap-3'>
-        <Icon icon="line-md:circle-twotone-to-confirm-circle-twotone-transition" color="#22c55e" width="50" height="50" />
-        <p className=' text-lg font-bold text-green-500'>{message}</p>
+        dom = <div className='loading-child flex flex-col justify-center items-center gap-3 text-green-500'>
+        <Icon icon="line-md:circle-twotone-to-confirm-circle-twotone-transition" width="50" height="50" />
+        <p className=' text-lg font-bold whitespace-nowrap'>{message}</p>
         </div>;
     } else {
         dom = <div className='loading-child flex flex-col justify-center items-center gap-3'>
         <Icon icon="line-md:alert-circle-twotone" color="#ef4444" width="50" height="50" />
-        <p className=' text-lg font-bold text-red-500'>{message}</p>
+        <p className=' text-lg font-bold text-red-500 whitespace-nowrap'>{message}</p>
         </div>;
     }
     if (isLoading) {
