@@ -7,13 +7,14 @@ use App\Http\Resources\ApiResource;
 use App\Models\Allowed_Domain;
 use App\Models\Form;
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
     public function index() {
-        $data = Form::get()->all();
+        $data = Form::where('creator_id', '=', auth()->user()->id)->get();
         return new ApiResource(200, 'Get all forms success', $data);
     }
 
@@ -66,10 +67,13 @@ class FormController extends Controller
         
         if ($data_detail) {
             $form_id = $data_detail->id;
+            $creator_id = $data_detail->creator_id;
+            $creator_detail = User::where('id', '=', $creator_id)->first();
             $data_allowed_domains = Allowed_Domain::where('form_id', '=', $form_id)->first();
             $allowed_domains = $data_allowed_domains->domain;
             $data_question = Question::where('form_id', '=', $form_id)->get();
             $data_detail["allowed_domains"] = explode(', ', $allowed_domains);
+            $data_detail["creator"] = $creator_detail;
 
             if ($data_question) {
                 $data_detail["question"] = $data_question;
