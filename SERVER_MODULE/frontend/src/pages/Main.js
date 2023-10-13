@@ -9,7 +9,7 @@ import DetailForm from "./form/DetailForm";
 const Main = (props) => {
     const { uri } = props;
     const navigate = useNavigate();
-    const { token } = useAuth();
+    const { token, user } = useAuth();
 
     useEffect(() => {
         if (!token) {
@@ -19,7 +19,7 @@ const Main = (props) => {
     return (
         <>
             <Sidebar uri={uri} />
-            { uri === "Home" ? <Home token={token} /> : uri === "Create" ? <Create token={token}/> : uri === "DetailForm" ? <DetailForm token={token} /> : null }
+            { uri === "Home" ? <Home token={token} user={user} /> : uri === "Create" ? <Create token={token} user={user}/> : uri === "DetailForm" ? <DetailForm token={token} user={user} /> : null }
         </>
     );
 }

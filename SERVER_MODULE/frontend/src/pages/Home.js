@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import { useAuth } from "../context/AuthContext";
 
 const Home = (props) => {
-    const { token } = props;
+    const { token, user } = props;
 
     const [DataState, setState] = useState({
         status: '',
@@ -27,7 +27,8 @@ const Home = (props) => {
     }, []);
 
     const { data, isLoading } = DataState;
-
+    const current_user = JSON.parse(user).email;
+    console.log(data[0]);
     return (
         <>
             <section className="ml-52 py-8 px-10">
@@ -35,9 +36,7 @@ const Home = (props) => {
                 <div className="grid grid-cols-4 gap-5">
                     {!isLoading ?
                         (data.map((item) => (
-                            <>
-                                <Card key={item.id} id={item.id} name={item.name} slug={item.slug} desc={item.description} />
-                            </>
+                            <Card key={item.id} id={item.id} name={item.name} slug={item.slug} desc={item.description} />
                         ))) : <Card />
                     }
                 </div>
