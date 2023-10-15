@@ -27,12 +27,10 @@ const Home = (props) => {
     }, []);
 
     const { data, isLoading } = DataState;
-    const current_user = JSON.parse(user).email;
-    console.log(data[0]);
     return (
         <>
             <section className="ml-52 py-8 px-10">
-                <h1 className="font-bold text-2xl mb-8">All Created Form</h1>
+                <h1 className="font-bold text-2xl mb-8">All your form</h1>
                 <div className="grid grid-cols-4 gap-5">
                     {!isLoading ?
                         (data.map((item) => (

@@ -38,13 +38,15 @@ class ResponseController extends Controller
         $results = ['responses' => []];
         $answer = [];
 
-        foreach($data_answer as $key => $item) {
-            $answer += [
-                $item->question->name => $item->value,
-            ];
-        }
-
+        
         foreach ($data_response as $key => $response) {
+            foreach($data_answer as $key => $item) {
+                if ($item->response_id == $response->id){
+                    $answer += [
+                        $item->question->name => $item->value,
+                    ];
+                }
+            }
             $results['responses'][] = [
                 'date' => $response->date,
                 'user' => User::where('id','=', $response->user_id)->first(),
@@ -78,7 +80,7 @@ class ResponseController extends Controller
             $allowed_domain = explode(',' , $allowed_domain_data->domain);
             $user_email = explode('@', auth()->user()->email)[1];
             
-            if(!in_array($user_email, $allowed_domain) && count($allowed_domain)) {
+            if(!in_array($user_email, $allowed_domain) && $allowed_domain[0] != "") {
                 return new ApiResource(403, 'Forbidden Access', null);
             }
 

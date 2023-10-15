@@ -15,13 +15,16 @@ const Main = (props) => {
         if (!token) {
             navigate('/login')
         }
-    });
-    return (
-        <>
-            <Sidebar uri={uri} />
-            { uri === "Home" ? <Home token={token} user={user} /> : uri === "Create" ? <Create token={token} user={user}/> : uri === "DetailForm" ? <DetailForm token={token} user={user} /> : null }
-        </>
-    );
+    }, []); 
+
+    if (token) {
+        return (
+            <>
+                <Sidebar uri={uri} />
+                { uri === "Home" ? <Home token={token} user={user} /> : uri === "Create" ? <Create token={token} user={user}/> : uri === "DetailForm" ? <DetailForm token={token} user={user} /> : null }
+            </>
+        );
+    }
 }
 
 export default Main;

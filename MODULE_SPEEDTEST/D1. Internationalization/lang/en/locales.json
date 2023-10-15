@@ -1,3 +1,27 @@
 {
-    "welcome_message" : "WELCOME TO EXPLOIT"
+    "welcome_message" : "Welcome to Webtech",
+    "desc_message" : "Webtech is the best place for high-quality website templates with modern design, professional appearance, and user-friendliness. Find your inspiration!",
+    "button" : "Pricing and Packages",
+    "feature1" : "Quality Templates",
+    "feature1_desc" : "The best design solution for a professional and attractive website appearance with ease of use.",
+    "feature2" : "Modern Design",
+    "feature2_desc" : "Fresh and trendy look for websites that follow the latest design trends, captivating visitors with contemporary aesthetics.",
+    "feature3" : "User-Friendly",
+    "feature3_desc" : "Intuitive and user-friendly website templates, making setup and customization easy without complexity.",
+    "feature4" : "Responsive and Compatible",
+    "feature4_desc" : "All our templates are responsive, meaning your website will look great on various devices, from desktop to mobile.",
+    "pricing_header" : "Pricing",
+    "starter": "Starter",
+    "starter_point1": "Responsive Design: Templates that adapt to any device.",
+    "starter_point2": "Regular Updates: Regular template updates for security and optimal performance.",
+    "starter_point3": "Email Support: Technical support via email for basic inquiries.",
+    "professional": "Professional",
+    "professional_point1": "Premium Design: Templates with outstanding premium designs.",
+    "professional_point2": "Free Updates and Maintenance: Regular updates and maintenance at no additional cost.",
+    "professional_point3": "Priority Support: Priority technical support via email or chat.",
+    "business": "Business",
+    "business_point1": "Custom Design: Templates with custom designs that reflect your business brand.",
+    "business_point2": "Proactive Updates: Proactive updates and maintenance for optimal performance.",
+    "business_point3": "24/7 Support: 24/7 technical support with fast response.",
+    "get_button" : "Get It Now"
 }

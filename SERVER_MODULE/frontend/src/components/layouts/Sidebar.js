@@ -3,18 +3,20 @@ import { useAuth } from "../../context/AuthContext";
 import { axiosAuth } from "../../api/axiosConfig";
 import Loading from "../Loading";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Sidebar = (props) => {
 
-    const { token, logout } = useAuth();
+    const { token, logout, user } = useAuth();
 
     const [state, setState] = useState({
         status: '',
         message: '',
         isLoading: ''
     });
+
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         setState({isLoading: true})
@@ -25,6 +27,7 @@ const Sidebar = (props) => {
                 setTimeout(()=> {
                     setState({isLoading: false});
                     logout();
+                    navigate('/login');
                 }, 2000)
             })
             .catch(error => {
@@ -36,6 +39,8 @@ const Sidebar = (props) => {
     }
 
     const { uri } = props;
+
+    const user_data = JSON.parse(user);
 
     return (
         <>
@@ -53,8 +58,12 @@ const Sidebar = (props) => {
                 </ul>
             </div>
             <div className="flex flex-col gap-2">
-                <div className="flex flex-col items-center py-3 px-3 gap-2 w-full font-bold rounded-xl border-2 border-sky-200 text-sky-500">
-                    <Icon icon="line-md:account" width="28" />User 3
+                <div className="flex flex-col items-center py-3 px-3 gap-2 w-full rounded-xl border-2 border-sky-200">
+                    <Icon icon="line-md:account" width="28" />
+                    <div className="flex flex-col items-center">
+                        <h2 className="text-lg font-bold">{user_data.name}</h2>
+                        <p className="text-slate-500">{user_data.email}</p>
+                    </div>
                 </div>
                 <button onClick={handleLogout} className="flex items-center py-2 px-3 border-2 border-red-200 gap-2 w-full rounded-xl hover:bg-red-500 text-red-500 hover:text-white font-bold transition-all duration-300">
                     <Icon icon="line-md:arrow-close-left" width="28" />Logout

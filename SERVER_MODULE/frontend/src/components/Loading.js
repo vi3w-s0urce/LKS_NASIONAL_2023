@@ -33,7 +33,7 @@ const Loading = (props) => {
     </div>;
     }
     return (
-        <div className={`absolute h-screen w-screen justify-center items-center overflow-hidden z-10 ${isLoading ? 'loading-anim-parent-in' : 'loading-anim-parent-out'}`}>
+        <div className={`absolute left-0 top-0 h-screen w-screen justify-center items-center overflow-hidden z-10 ${isLoading ? 'loading-anim-parent-in' : 'loading-anim-parent-out'}`}>
             <div className={`flex flex-col items-center justify-center absolute rounded-[100%] bg-sky-300 overflow-hidden ${isLoading ? 'loading-anim-in' : 'loading-anim-out'}`}>
                 {dom}
             </div>

@@ -1,3 +1,27 @@
 {
-    "welcome_message" : "ASSLAMUALAIKUM EXPLOIT"
+    "welcome_message" : "Selamat Datang di Webtech",
+    "desc_message" : "Webtech adalah tempat terbaik untuk template website berkualitas tinggi dengan desain modern, tampilan profesional, dan kemudahan penggunaan. Temukan inspirasi Anda!",
+    "button" : "Harga dan paket",
+    "feature1" : "Template Berkualitas",
+    "feature1_desc" : "Solusi desain terbaik untuk tampilan situs web profesional dan menarik dengan kepraktisan dalam penggunaan.",
+    "feature2" : "Desain yang modern",
+    "feature2_desc" : "Tampilan segar dan trendi untuk situs web yang mengikuti perkembangan desain terbaru, memikat pengunjung dengan estetika kontemporer.",
+    "feature3" : "Kemudahan Penggunaan",
+    "feature3_desc" : "Template website yang intuitif dan ramah pengguna, memudahkan pengaturan dan penyesuaian tanpa kerumitan",
+    "feature4" : "Responsif dan Kompitibel",
+    "feature4_desc" : " Semua template kami responsif, artinya situs Anda akan tampak hebat di berbagai perangkat, dari desktop hingga ponsel.",
+    "pricing_header" : "Harga",
+    "starter": "Stater",
+    "starter_point1": "Desain Responsif: Template responsif yang sesuai dengan perangkat apa pun.",
+    "starter_point2": "Pembaruan Berkala: Pembaruan template secara berkala untuk memastikan keamanan dan kinerja optimal.",
+    "starter_point3": "Dukungan Email: Dukungan teknis melalui email untuk pertanyaan dasar.",
+    "professional": "Profesional",
+    "professional_point1": "Desain Premium: Template dengan desain premium yang menonjol.",
+    "professional_point2": "Pembaruan dan Pemeliharaan Gratis: Pembaruan dan pemeliharaan berkala tanpa biaya tambahan.",
+    "professional_point3": "Dukungan Prioritas: Dukungan teknis prioritas melalui email atau obrolan.",
+    "business": "Bisnis",
+    "business_point1": "Desain Kustom: Template dengan desain kustom yang mencerminkan merek bisnis Anda.",
+    "business_point2": "Pembaruan Proaktif: Pembaruan dan pemeliharaan proaktif untuk memastikan performa optimal.",
+    "business_point3": "Dukungan 24/7: Dukungan teknis 24/7 dengan respon cepat.",
+    "get_button" : "Dapatkan sekarang juga"
 }

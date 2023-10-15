@@ -81,7 +81,7 @@ class FormController extends Controller
 
             $user_domain = explode('@', auth()->user()->email)[1];
 
-            if (!in_array($user_domain, $data_detail->allowed_domains) && $data_detail->allowed_domains[0] != ""){
+            if (!in_array($user_domain, $data_detail->allowed_domains) && $data_detail->allowed_domains[0] != "" && $creator_id != auth()->user()->id){
                 return new ApiResource(403, 'Forbidden access', null);
             }
 

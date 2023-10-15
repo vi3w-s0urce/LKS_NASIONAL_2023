@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ApiResource;
+use App\Models\Answer;
 use App\Models\Form;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -58,7 +59,8 @@ class QuestionController extends Controller
             $form_id = $data_form->id;
             $invalid_question = Question::where('id', '=', $question_id)->first();
             if ($invalid_question && $data_form->creator_id == auth()->user()->id) {
-                $delete = Question::where('id', '=', $question_id)->delete();
+                $delete_answer =  Answer::where('question_id', '=', $question_id)->delete();
+                $delete_question = Question::where('id', '=', $question_id)->delete();
                 return new ApiResource(200, 'Remove question success', true);
             } else if (!$invalid_question) {
                 return new ApiResource(404, 'Question not found', null);
