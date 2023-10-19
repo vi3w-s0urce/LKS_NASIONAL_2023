@@ -1,0 +1,155 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: monospace, mono;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+#welcome-screen {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    z-index: 2;
+}
+
+#form-player {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#form-player input {
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border: solid 2px blue;
+    padding: 10px;
+}
+
+.button {
+    background-color: transparent;
+    border: solid 2px blue;
+    color: blue;
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.color-hover:hover {
+    background-color: blue;
+    color: black;
+}
+
+.start-hover:hover {
+    box-shadow: 5px 5px 0 0 blue;
+}
+
+.select-enemy {
+    display: flex;
+    width: 200px;
+    gap: 10px;
+}
+
+.select-enemy button {
+    width: 100%;
+}
+
+.game-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-box {
+    display: flex;
+    border: solid 2px blue;
+    padding: 50px;
+    margin-top: 20px;
+}
+
+#hexagon-box {
+    margin: 10px;
+}
+
+.hexagon-red path {
+    fill: red;
+}
+
+.hexagon-red-hover path {
+    fill: rgba(255, 0, 0, 0.295);
+}
+
+.hexagon-blue-hover path {
+    fill: rgba(0, 0, 255, 0.295);
+}
+
+.hexagon-blue path {
+    fill: blue;
+}
+
+#hex-number {
+    font: normal 4px monospace;
+    fill: white;
+}
+
+.current {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.disabled path {
+    fill: gray;
+}
+
+.player-name {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.red-block {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border: solid 2px white;
+}
+
+.blue-block {
+    background-color: blue;
+    width: 18px;
+    height: 18px;
+    border: solid 2px white;
+}
+
+.player-red, .player-blue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
